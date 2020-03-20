@@ -354,6 +354,16 @@ func InteractWithStore(store gokv.Store, key string, t *testing.T, waitGroup *sy
 	if err != nil {
 		t.Error(err)
 	}
+	// Delete
+	err = store.Delete(key)
+	if err != nil {
+		t.Error(err)
+	}
+	// Read
+	_, err = store.Get(key, new(Foo))
+	if err != nil {
+		t.Error(err)
+	}
 }
 
 func TestExpiration(cache gokv.Cache, t *testing.T) {
